@@ -2,6 +2,11 @@ class UnitConverterTools {
     /*
         Class with tools to perform unit conversion between units of the same quantities.
 
+        ATTRIBUTES:
+        -----------------------------------------------------------------------------------------------------------------------------------
+        * quantities: a 1D array of all physical quantities
+        * quantityUnits: an Object with physical quantities as keys and a 1D array of units of the quantity as values.
+
         Methods:
         -----------------------------------------------------------------------------------------------------------------------------------
         * initConversionFactors(): initialises a JavaScript Object of conversion factors used to perform the conversion.
