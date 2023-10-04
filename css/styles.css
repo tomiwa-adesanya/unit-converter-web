@@ -1,0 +1,91 @@
+* {box-sizing: border-box;} /* GENERAL STYLING */
+
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING GENERAL ELEMENTS
+--------------------------------------------------------------------------------------------------------
+*/
+select {
+    padding: 7.5px;
+}
+input {
+    padding: 10px;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING OUTERMOST DIV WRAPPER
+--------------------------------------------------------------------------------------------------------
+*/
+#outer-wrapper-div {
+    width: 650px;
+    margin: 150px auto;
+    padding: 15px;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING PHYSICAL QUANTITY INPUT DIV CONTENT
+--------------------------------------------------------------------------------------------------------
+*/
+#quantity-input-div select {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING INPUTS WRAPPER DIV
+--------------------------------------------------------------------------------------------------------
+*/
+#inputs-wrapper-div {
+    display: flex;
+    flex-direction: row;
+}
+
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING CLASSES
+--------------------------------------------------------------------------------------------------------4
+*/
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 15px;
+}
+
+.bordered-div {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.inputs-div { /* Div element that contains `input` element and `select` elements for user to input numerical values and select conversion units*/
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.left {margin-left: 5px;}
+.right {margin-right: 5px;}
+
+.equals-to-icon {
+    width: 10%;
+    background-image: url("/resources/images/equals.png");
+    background-position: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.clear-btn {
+    margin-top: 7.5px;
+    padding: 8.5px 15px;
+    float: right;
+}
+
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+    overflow: auto;
+}

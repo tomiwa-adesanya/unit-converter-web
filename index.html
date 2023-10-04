@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="icon" type="image/ico" href="/resources/images/icon.ico">
+
+        <style src="/js/converter.js"></style> <!-- Contains program to perform all unit conversion -->
+
+        <title>Unit Converter (Web)</title>
+    </head>
+    <body>
+
+        <!--OUTER DIV WRAPPER THAT CONTAINS OTHER WEB ELEMENTS-->
+        <div class="bordered-div" id="outer-wrapper-div">
+
+            <p class="title">Unit Converter</p><hr/>
+
+            <div id="quantity-input-div">
+                <select name="quantity" id="quantity-input">
+                    <option>Physical quantity</option>
+                </select>
+            </div>
+
+            <!--DIV WRAPPER THAT CONTAINS ALL INPUTS ELEMENTS-->
+            <div id="inputs-wrapper-div">
+                <!--RIGHT SECTION OF UNIT INPUTS-->
+                <div class="inputs-div right">
+                    <input type="text" id="left-unit-input"/>
+                    <select name="unit-one" id="left-unit-select"></select>
+                </div>
+
+                <!--EQUALS TO ICON BETWEEN RIGTH AND LEFT INPUTS SECTIONS-->
+                <i class="equals-to-icon"></i>
+
+                <!--LEFT SECTION OF UNIT INPUTS-->
+                <div class="inputs-div left">
+                    <input type="text" id="right-unit-input"/>
+                    <select name="unit-two" id="right-unit-select"></select>
+                </div>
+
+            </div>
+
+            <div class="clearfix">
+                <button class="clear-btn">clear</button>
+            </div>
+
+        </div>
+
+    </body>
+</html>
