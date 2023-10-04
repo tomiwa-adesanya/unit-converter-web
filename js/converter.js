@@ -12,6 +12,11 @@ class UnitConverterTools {
         * convert(quantity, value, from, to): converts value from base unit passed to argument `from` to a required unit passed to argument 
         `to`. To convert to specified unit, the value is first of all converted to a Standard Conversion Unit. Finally, the respective
         value in the Standard Conversion Unit is converted to the required unit.
+
+        ABOUT AUTHOR
+        ---------------
+        NAME - TOMIWA ADESANYA
+        EMAIL - t.g.adesanya392@gmail.com
     */
 
     constructor() {
