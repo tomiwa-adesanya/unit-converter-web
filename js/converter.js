@@ -248,13 +248,18 @@ class UnitConverterTools {
     }
 
     convert_temperature(value, from, to){
+
+        if (from == to){
+            return value
+        }
+
         if ((from == "celsius") && (to == "fahrenheit")){
             return ((value * 1.8) + 32)
         } else if ((from == "fahrenheit") && (to == "celsius")){
             return ((value - 32) * 1/1.8)
         } else if (((to == "kelvin") || (from == "kelvin")) && ((to == "celsius") || (from == "celsius"))){
             let factor = (to == "kelvin") ? 273.15 : -273.15
-            return (value + factor)
+            return (+value + +factor)
         } else if ((from == "kelvin") && (to == "fahrenheit")) {
             return this.convert_temperature(
                 this.convert_temperature(value, "kelvin", "celsius"),
