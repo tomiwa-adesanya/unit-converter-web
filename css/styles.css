@@ -10,11 +10,16 @@ select {
 }
 input {
     padding: 10px;
+    margin-bottom: 1px;
+    border: 0px; 
 }
 body {
     background-image: url("/resources/images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+}
+button {
+    border: 1px solid rgba(10,38,71, 0.9);
 }
 
 /*
@@ -26,6 +31,10 @@ STYLING OUTERMOST DIV WRAPPER
     width: 650px;
     margin: 150px auto;
     padding: 15px;
+    transition: 0.85s ease-in-out;
+}
+#outer-wrapper-div:hover {
+    transform: scale(1.075);
 }
 
 /*
@@ -74,7 +83,7 @@ STYLING CLASSES
 .left {margin-left: 5px;}
 .right {margin-right: 5px;}
 
-.equals-to-icon {
+.convert-icon {
     width: 10%;
     background-image: url("/resources/images/convert.png");
     background-position: 50%;
@@ -94,3 +103,17 @@ STYLING CLASSES
     display: table;
     overflow: auto;
 }
+/*
+--------------------------------------------------------------------------------------------------------
+STYLING COLORS
+--------------------------------------------------------------------------------------------------------
+*/
+#outer-wrapper-div {background-color: rgba(10,38,71, 0.65); color: white}
+select {background-color: 	rgba(32,82,149, 0.5); color: white;}
+
+input {background-color: rgba(44,116,179, 0.3);  color: white;}
+input:focus {outline: 0;border-bottom: 2px solid rgba(10,38,71, 1);}
+
+button {background-color: rgba(10,38,71, 0.75);  color: white;}
+button:hover {background-color: rgba(13,10,28, 0.8);}
+button:active {background-color: rgba(13,10,28, 1);}
