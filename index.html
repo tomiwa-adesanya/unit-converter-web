@@ -6,8 +6,6 @@
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
         <link rel="icon" type="image/ico" href="/resources/images/icon.ico">
 
-        <style src="/js/converter.js"></style> <!-- Contains program to perform all unit conversion -->
-
         <title>Unit Converter (Web)</title>
     </head>
     <body>
@@ -18,9 +16,7 @@
             <p class="title">Unit Converter</p><hr/>
 
             <div id="quantity-input-div">
-                <select name="quantity" id="quantity-input">
-                    <option>Physical quantity</option>
-                </select>
+                <select name="quantity" id="quantity-select"></select>
             </div>
 
             <!--DIV WRAPPER THAT CONTAINS ALL INPUTS ELEMENTS-->
@@ -48,5 +44,147 @@
 
         </div>
 
+        <!--JAVASCRIPT SECTION-->
+        <script src="/js/converter.js"></script> <!-- Contains program to perform all unit conversion -->
+        <script>
+            /*
+            ------------------------------------------------------------------------------------------
+            VARIABLE DECLARATIONS
+            ------------------------------------------------------------------------------------------
+            */
+            let physicalQuantities = converter.quantities;
+            let selectedQuantity
+
+            // Creating DOM Objects
+            let quantitySelectElement = document.querySelector("#quantity-select") // Physical Quantity Select
+            let leftUnitSelectElement = document.querySelector("#left-unit-select") // Left unit Select
+            let rightUnitSelectElement = document.querySelector("#right-unit-select") // Right Unit Select
+            let leftUnitInputElement = document.querySelector("#left-unit-input")
+            let rightUnitInputElement = document.querySelector("#right-unit-input")
+            let clearButtonElement = document.querySelector(".clear-btn")
+
+            /*
+            ------------------------------------------------------------------------------------------
+            FUNCTIONS DEFINITIONS
+            ------------------------------------------------------------------------------------------
+            */
+            function formatOption(stringValue){
+                while (stringValue.includes("_")){
+                    stringValue = stringValue.replace("_", " ")
+                }
+                return stringValue[0].toUpperCase() + stringValue.slice(1)
+            }
+
+            function createOptionElement (selectElement, optionContent, optionValue) {
+                let optionElement = document.createElement("option")
+                optionElement.textContent = optionContent
+                optionElement.setAttribute("value", optionValue)
+                selectElement.appendChild(optionElement)
+            }
+            function createPhysicalQuantitiesOptions(){
+                /*
+                Creates and adds physical quantity Options to the HTML Element that allows users to select Conversion Physical Quantity
+                */ 
+                let physicalQuantities = converter.quantities;
+                for (let physicalQuantity of physicalQuantities){
+                    createOptionElement (
+                        quantitySelectElement, formatOption(physicalQuantity), physicalQuantity
+                    )
+                }
+                quantitySelectElement.value = ""
+            }
+
+            function addUnitsOptions(quantity){
+                /*
+                Creates options of conversion units for a selected Physical quantity
+                */
+                leftUnitSelectElement.innerHTML = ""
+                rightUnitSelectElement.innerHTML = ""
+
+                let units = converter.quantityUnits[quantity]
+
+                for (let unit of units) {
+                    createOptionElement(leftUnitSelectElement, formatOption(unit), unit)
+                    createOptionElement(rightUnitSelectElement, formatOption(unit), unit)
+                }
+
+            }
+
+            function convertFromLeftToRight(){
+                try {
+                    let convertedValue = converter.convert(
+                        selectedQuantity, +leftUnitInputElement.value, leftUnitSelectElement.value, rightUnitSelectElement.value
+                    )
+                    console.log(convertedValue)
+                    rightUnitInputElement.value = convertedValue
+                } catch(exception){
+                    console.log(exception)
+                }
+            }
+
+            function convertFromRightToLeft(){
+                try {
+                    leftUnitInputElement.value = converter.convert(
+                        selectedQuantity, +rightUnitInputElement.value, rightUnitSelectElement.value, leftUnitSelectElement.value
+                    )
+                } catch (exception){
+                    console.log(exception)
+                }
+            }
+
+            function clear(){
+                /*
+                Clears all input and select values
+                */
+                quantitySelectElement.value = ""
+
+                leftUnitInputElement.value = ""
+                leftUnitSelectElement.value = ""
+                leftUnitSelectElement.innerHTML = ""
+
+                rightUnitInputElement.value = ""
+                rightUnitSelectElement.value = ""
+                rightUnitSelectElement.innerHTML = ""
+
+            }
+
+            /*
+            ------------------------------------------------------------------------------------------
+            FUNCTIONS EXECUTIONS
+            ------------------------------------------------------------------------------------------
+            */
+            createPhysicalQuantitiesOptions()
+
+            /*
+            ------------------------------------------------------------------------------------------
+            ADDING EVENT LISTENERS
+            ------------------------------------------------------------------------------------------
+            */
+           // Physical quantity Select event listener
+            quantitySelectElement.addEventListener(
+                "change", (event) => {
+                    selectedQuantity = quantitySelectElement.value
+                    addUnitsOptions(selectedQuantity)
+                    leftUnitInputElement.value = 1;
+                    convertFromLeftToRight()
+                }
+            )
+            // Left Input Section event listeners
+            leftUnitInputElement.addEventListener( "input", (event) => { convertFromLeftToRight()})
+            leftUnitSelectElement.addEventListener( "change", (event) => { convertFromLeftToRight()})
+
+            
+            // Right Input Section event listeners
+            rightUnitInputElement.addEventListener( "input", (event) => { convertFromRightToLeft()})
+            rightUnitSelectElement.addEventListener( "change", (event) => { convertFromLeftToRight()})
+
+            // Clear button click event listener
+            clearButtonElement.addEventListener(
+                "click", (event) => {
+                    clear()
+                }
+            )
+
+        </script>
     </body>
 </html>
